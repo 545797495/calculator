@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>计算器</title>
+    <link rel="stylesheet" href="css/calculator.css" />
+  </head>
+
+  <body>
+    <!--form-->
+    <div class="form-outbox">
+      <!--inbox-->
+      <div class="form-inbox">
+        <!---->
+        <div class="from-item relative">
+          <lable class="main-abl">物業樓價:</lable>
+          <input class="main-input tr js-dcheck" placeholder="輸入物業樓價" id="propertyPrice">
+          <span class="main-abr">元</span>
+        </div>
+        <!---->
+        <!---->
+        <div class="from-item relative">
+          <lable class="main-abl">按揭成數:</lable>
+          <input class="main-input tr js-dcheck" placeholder="輸入按揭成數" id="mortgageRate">
+          <span class="main-abr">%</span>
+        </div>
+        <!---->
+        <!---->
+        <div class="from-item relative">
+          <lable class="main-abl">還款年期:</lable>
+          <input class="main-input tr js-dcheck" placeholder="输入還款年期" id="mortgageYear">
+          <span class="main-abr">年</span>
+        </div>
+        <!---->
+        <!---->
+        <div class="from-item relative">
+          <lable class="main-abl">按揭利率:</lable>
+          <input class="main-input tr js-dxcheck" placeholder="输入按揭利率" id="mortgageInterestRate">
+          <span class="main-abr">%</span>
+        </div>
+        <!---->
+      </div>
+      <!--inbox-->
+    </div>
+    <!--form-->
+    <!--form-->
+    <div class="from-outbox">
+      <div class="expanded"><a class="cal-toggle js-toggle" href="#">收起<i class="m-icon i-toggle"></i></a></div>
+      <!--inbox-->
+      <div class="form-inbox expand-box" id="otherYear">
+        <!---->
+        <div class="from-item relative">
+          <lable class="main-abl">其餘年期:</lable>
+          <input class="main-input tr js-dcheck" type="number" placeholder="輸入其餘年期" id="otherMortgageYear">
+          <span class="main-abr">年</span>
+        </div>
+        <!---->
+        <!---->
+        <div class="from-item relative">
+          <lable class="main-abl">其餘利率:</lable>
+          <input class="main-input tr js-dxcheck" type="number" placeholder="输入其餘利率" id="otherMortgageInterestRate">
+          <span class="main-abr">%</span>
+        </div>
+        <!---->
+      </div>
+      <!--inbox-->
+    </div>
+    <!--form-->
+    <!--btn-->
+    <div class="result-btnbox tc"><a class="m-btn" id="resultBtn">獲取計算結果</a></div>
+    <!--btn-->
+    <!--result-->
+    <div class="result-infobox" id="resultBox">
+      <!--result list-->
+      <div class="result-conlist">
+        <div class="result-item clearfix">
+          <p class="fl">首期:</p>
+          <p class="fr"><span id="initialCharges">3,200,000</span><em class="c-999">&nbsp;元</em></p>
+        </div>
+        <div class="result-item clearfix">
+          <p class="fl">貸款金額:</p>
+          <p class="fr"><span id="loan">4,800,000</span><em class="c-999">&nbsp;元</em></p>
+        </div>
+        <div class="result-item clearfix">
+          <p class="fl">期數:</p>
+          <p class="fr"><span id="yearPeriod">30</span><em>年</em><span>(<span id="period">360</span><em>期</em>)&nbsp;</span>
+          </p>
+        </div>
+        <div class="result-item clearfix">
+          <p class="fl"><span id="xyPeriod">1-120</span>期利率:</p>
+          <p class="fr"><span id="xyInterestRate">2.5</span><em class="c-999">&nbsp;%</em></p>
+        </div>
+        <div class="result-item clearfix">
+          <p class="fl">每月供款:</p>
+          <p class="fr"><span class="c-fda910" id="xyMonthlyPayment">18,966</span><em class="c-999">&nbsp;元</em></p>
+        </div>
+        <!--有填其余年限的 start-->
+        <div class="result-item clearfix" id="otherRateInfo">
+          <p class="fl"><span id="abPeriod">121-360</span>期利率:</p>
+          <p class="fr"><span id="abInterestRate">3</span><em class="c-999">&nbsp;%</em></p>
+        </div>
+        <div class="result-item clearfix" id="otherYearInfo">
+          <p class="fl">每月供款:</p>
+          <p class="fr"><span class="c-fda910" id="abMonthlyPayment">19,850</span><em class="c-999">&nbsp;元</em></p>
+        </div>
+        <!--有填其余年限的 end-->
+        <div class="result-item clearfix">
+          <p class="fl">全期總利息:</p>
+          <p class="fr"><span id="totalInterest">2,239,813</span><em class="c-999">&nbsp;元</em></p>
+        </div>
+        <div class="result-item clearfix">
+          <p class="fl"><i class="m-icon i-jiao"></i>最低每月入息要求:</p>
+          <p class="fr"><span class="c-fda910" id="minimumMonthlyIncome">47,963</span><em class="c-999">&nbsp;元</em></p>
+        </div>
+        <div class="result-item clearfix" id="insureInfo">
+          <p class="fl"><i class="m-icon i-jin">#</i>按揭保險費（一次付清）:</p>
+          <p class="fr"><span id="mortgagePremium">47,963</span><em class="c-999">&nbsp;元</em></p>
+        </div>
+      </div>
+      <!--result list-->
+      <!--按揭说明-->
+      <a class="intro-link" id="linkIntro" href="mortgage_instruction.html">查看按揭指引說明&gt;</a>
+      <!--按揭说明-->
+
+    </div>
+    <!--result-->
+    <!--按钮组-->
+    <ul class="btn-list tc clearfix js-fixbtn" id="btnList" style="display: none;">
+   
+             <!--   <li><a href="expend.html">支出一覽</a></li>
+          <li> <a href="contribution.html">供款列表</a></li>
+          <li> <a href="mortgage_plan.html">按揭計劃</a></li>-->
+
+    </ul>
+    <!--按钮组-->
+  </body>
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/calculator.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      /*读取用户local最近数据*/
+      var userId = getQuery('userId');
+      var version = getQuery('version');
+      var sessionId = getQuery('sessionId');
+      /*放入本地存储*/
+      var urlInfo = '?sessionId=' + 1 + '&userId=' + 2 + '&version=' + 3;
+      $('#linkIntro').attr('href', '/qfang-api/api/mobile/tax/mortgageCalculateInstruction' + urlInfo);
+      var linkHtml = '<li><a href="/qfang-api/api/mobile/tax/mortgageCalculateExpend' + urlInfo + '">支出一覽</a></li><li> <a href="/qfang-api/api/mobile/tax/mortgageCalculateContribution' + urlInfo + '">供款列表</a></li><li> <a href="/qfang-api/api/mobile/tax/mortgageCalculatePlan' + urlInfo + '">按揭計劃</a></li>';
+      /* $('#btnList').append(linkHtml);*/
+      $('#propertyPrice').on('keyup', function() {
+        var vs = formatNumber($(this).val(), 0, 1);
+        $("#propertyPrice").val(vs);
+      });
+      /*$('#mortgageInterestRate').on('keyup', function() {
+        var vs = formatNumber($(this).val(), 2, 0);
+        $("#mortgageInterestRate").val(vs);
+      });*/
+      $('#resultBtn').on('click', function() {
+        /*进行提交等操作*/
+        var re1 = /^\d+\.?\d{0,2}$/; /*2位小数*/
+        //楼价10萬-500M，整数
+        /*空或者空字符都会返回NaN*/
+        var reg = /,/gi;
+        var propertyPrice = parseInt(($('#propertyPrice').val()).replace(reg, ""));
+        //按揭成数1%-100%，整数
+        var mortgageRate = parseInt($('#mortgageRate').val());
+        //還款年期，1-30
+        var mortgageYear = parseInt($('#mortgageYear').val());
+        //按揭利率，小数点后两位
+        var mortgageInterestRate = parseFloat($('#mortgageInterestRate').val());
+        //其他还款年限等可有可无
+        var otherMortgageYear = parseInt($('#otherMortgageYear').val());
+        var otherMortgageInterestRate = parseFloat($('#otherMortgageInterestRate').val());
+        if (isNaN(propertyPrice)) {
+          showmsg('請輸入樓價！');
+          $('#propertyPrice').focus();
+          return;
+        } else {
+          if (!(propertyPrice >= 100000 && propertyPrice <= 500000000)) {
+            showmsg('請輸入10萬到5億的樓價！');
+            $('#propertyPrice').focus();
+            return;
+          }
+        }
+        if (isNaN(mortgageRate)) {
+          showmsg('請輸入按揭成數！');
+          $('#mortgageRate').focus();
+          return;
+        } else {
+          if (!(mortgageRate >= 1 && mortgageRate <= 100)) {
+            showmsg('樓價1到100的按揭成數！');
+            $('#mortgageRate').focus();
+            return;
+          }
+        }
+        if (isNaN(mortgageYear)) {
+          showmsg('請輸入還款年期！');
+          $('#mortgageYear').focus();
+          return;
+        } else {
+          if (!(mortgageYear >= 1 && mortgageYear <= 30)) {
+            showmsg('請輸入1年到30年的還款年期！');
+            $('#mortgageYear').focus();
+            return;
+          }
+        }
+        if (isNaN(mortgageInterestRate)) {
+          showmsg('請輸入按揭利率！');
+          $('#mortgageInterestRate').focus();
+          return;
+        } else {
+          if (!(mortgageInterestRate >= 0.1 && mortgageInterestRate <= 50 && (re1.test(mortgageInterestRate)))) {
+            showmsg('請輸入0.1到50的不多於兩位小數按揭利率！');
+            $('#mortgageInterestRate').focus();
+            return;
+          }
+        }
+        //其他还款等
+        if (!(isNaN(otherMortgageYear))) {
+          if (!(otherMortgageYear >= 1 && otherMortgageYear <= 30)) {
+            showmsg('請輸入1年到30年的其他還款年期！');
+            $('#otherMortgageYear').focus();
+            return;
+          } else {
+            if (isNaN(otherMortgageInterestRate)) {
+              showmsg('請輸入其他按揭利率！');
+              $('#otherMortgageInterestRate').focus();
+              return;
+            }
+          }
+        } else {
+          otherMortgageYear = null;
+        }
+        if (!(isNaN(otherMortgageInterestRate))) {
+          if (!(otherMortgageInterestRate >= 0.1 && otherMortgageInterestRate <= 50 && (re1.test(otherMortgageInterestRate)))) {
+            showmsg('請輸入0.1到50的按揭利率！');
+            $('#otherMortgageInterestRate').focus();
+            return;
+          } else {
+            if (isNaN(otherMortgageYear)) {
+              showmsg('請輸入其他還款年期！');
+              $('#otherMortgageYear').focus();
+              return;
+            }
+          }
+        } else {
+          otherMortgageInterestRate = null;
+        }
+        /*传给后台的对象*/
+        var userInput = {
+          "propertyPrice": propertyPrice,
+          "mortgageRate": mortgageRate,
+          "mortgageYear": mortgageYear,
+          "mortgageInterestRate": mortgageInterestRate,
+          "otherMortgageYear": otherMortgageYear,
+          "otherMortgageInterestRate": otherMortgageInterestRate,
+          "version": version,
+          "sessionId": sessionId
+        };
+        window.localStorage.setItem('baseUse' + userId, JSON.stringify(userInput));
+        showmsg('正在計算，请稍後...');
+        var data = {
+          "calculateResult": {
+            "initialCharges": 40003968.8,
+            "loan": 60005953.2,
+            "yearPeriod": 4,
+            "period": 48,
+            "xPeriod": 1,
+            "yPeriod": 24,
+            "xyInterestRate": 2.00,
+            "xyMonthlyPayment": 1301836.573770441878510154888,
+            "aPeriod": 25,
+            "bPeriod": 48,
+            "abInterestRate": 2.10,
+            "abMonthlyPayment": 1301836.57377047251653834404801775732776916563642,
+            "totalInterest": 2482202.34098194548116397446442617586645997527408,
+            "minimumMonthlyIncome": 2303157.85371546677147460092,
+            "mortgagePremium": 0,
+            "userId": null,
+            "requestId": null,
+            "propertyPrice": null,
+            "mortgageRate": null,
+            "oldAdValoremStampDuty": null,
+            "newAdValoremStampDuty": null,
+            "buyerStampDuty": null,
+            "extraStampDuty": null,
+            "monthlyPayments": [],
+            "total": null,
+            "code": "1000",
+            "msg": null
+          }
+        };
+        /* $.ajax({
+           type: 'POST',
+           url: api + '/calculateMortgage',
+           data: userInput,
+           dataType: "json",
+           success: function(data) {*/
+        var infoObj = data.calculateResult;
+        if (infoObj.code == '1000') {
+          $('#initialCharges').text(formatNumber(infoObj.initialCharges, 0, 1));
+          $('#loan').text(formatNumber(infoObj.loan, 0, 1));
+          $('#yearPeriod').text(infoObj.yearPeriod);
+          $('#period').text(infoObj.period);
+          $('#xyPeriod').html(infoObj.xPeriod + '-' + infoObj.yPeriod);
+          $('#xyInterestRate').text(formatNumber(infoObj.xyInterestRate, 2, 0));
+          $('#xyMonthlyPayment').text(formatNumber(infoObj.xyMonthlyPayment, 0, 1));
+          if (infoObj.aPeriod && infoObj.bPeriod && infoObj.abMonthlyPayment) {
+            $('#abPeriod').html(infoObj.aPeriod + '-' + infoObj.bPeriod);
+            $('#abInterestRate').text(formatNumber(infoObj.abInterestRate, 2, 0));
+            $('#abMonthlyPayment').text(formatNumber(infoObj.abMonthlyPayment, 0, 1));
+            $('#otherYearInfo').show();
+            $('#otherRateInfo').show();
+          } else {
+            $('#otherYearInfo').hide();
+            $('#otherRateInfo').hide();
+          }
+          $('#totalInterest').text(formatNumber(infoObj.totalInterest, 0, 1));
+          $('#minimumMonthlyIncome').text(formatNumber(infoObj.minimumMonthlyIncome, 0, 1));
+          if (infoObj.mortgagePremium) {
+            $('#mortgagePremium').text(formatNumber(infoObj.mortgagePremium, 0, 1));
+            $('#insureInfo').show();
+          } else {
+            $('#insureInfo').hide();
+          }
+          /*页面滚动到计算结果处*/
+          var tops = $('#resultBtn').offset().top;
+          $('html,body').animate({
+            scrollTop: tops
+          }, 800);
+          $('#resultBox').show();
+          $('#btnList').show();          
+          /*数据传入session传到支出一览去*/
+          var resultInfo = {
+            "propertyPrice": propertyPrice,
+            "mortgageRate": mortgageRate,
+            "calculateResult": infoObj
+          };
+          window.sessionStorage.resultInfo = JSON.stringify(resultInfo);
+        } else {
+          //错误
+          showmsg(dataObj.msg);
+        }
+        /*  },
+          error: function() {
+            $('.msg-box').remove();
+            showmsg('網絡錯誤');
+          }
+        });*/
+      });
+      var baseLocalInfo = window.localStorage.getItem('baseUse' + userId);
+      if (baseLocalInfo) {
+        var baseObj = JSON.parse(baseLocalInfo);
+        $('#propertyPrice').val(formatNumber(baseObj.propertyPrice, 0, 1));
+        $('#mortgageRate').val(baseObj.mortgageRate);
+        $('#mortgageYear').val(baseObj.mortgageYear);
+        $('#mortgageInterestRate').val(baseObj.mortgageInterestRate);
+        if (baseObj.otherMortgageYear) {
+          $('#otherMortgageYear').val(baseObj.otherMortgageYear);
+        }
+        if (baseObj.otherMortgageInterestRate) {
+          $('#otherMortgageInterestRate').val(baseObj.otherMortgageInterestRate);
+        }
+      }
+      /*qusession*/
+      var resultSession = window.sessionStorage.resultInfo;
+      if (resultSession) {
+        var resultInfo = JSON.parse(resultSession);
+        setInfo(resultInfo);
+        $('#resultBox').show();
+        $('#btnList').show();
+      }
+    });
+  </script>
+
+</html>

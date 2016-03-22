@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>供款</title>
+    <link rel="stylesheet" href="css/calculator.css" />
+  </head>
+
+  <body>
+    <div class="fixbt" id="fixbtBox"></div>
+    <ul class="btn-list tc clearfix js-fixbtn" id="subLink">
+     <!-- <li><a href="javascript:;" onclick="location.replace('expend.html')">支出一覽</a></li>
+      <li><a href="javascript:;" onclick="location.replace('contribution.html')">供款列表</a></li>
+      <li><a href="javascript:;" onclick="location.replace('mortgage_plan.html')">按揭計劃</a></li>-->
+    </ul>
+  </body>
+  <script src="js/jquery-2.1.4.min.js"></script>
+ <script src="js/calculator.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $('#subLink').append(ctrlLink());
+     infoList(urlInfo());
+   /*window.history.replaceState(null, null,window.localStorage.getItem('indexUrl'));*/
+    //window.history.replaceState(null, null,'index.html'+window.localStorage.getItem('indexUrl'));
+      /*var userId = window.sessionStorage.getItem('userId');
+      var sessionId = window.sessionStorage.getItem('sessionId');
+      var version = window.sessionStorage.getItem('version');
+      var baseLocalInfo = window.localStorage.getItem('baseUse' + userId);
+      var baseObj;
+      if (baseLocalInfo) {
+        baseObj = JSON.parse(baseLocalInfo);
+      }
+      baseObj.sessionId = sessionId;
+      baseObj.version = version;*/
+      /*  $.ajax({
+          type: 'POST',
+          url: api + '/getMonthlyPayment',
+          data: baseObj,
+          dataType: "json",
+          success: function(data) {*/
+      var data = {
+        "monthlyPayments": {
+          "initialCharges": null,
+          "loan": null,
+          "yearPeriod": null,
+          "period": null,
+          "xPeriod": null,
+          "yPeriod": null,
+          "xyInterestRate": null,
+          "xyMonthlyPayment": null,
+          "aPeriod": null,
+          "bPeriod": null,
+          "abInterestRate": null,
+          "abMonthlyPayment": null,
+          "totalInterest": null,
+          "minimumMonthlyIncome": null,
+          "mortgagePremium": null,
+          "userId": null,
+          "requestId": null,
+          "propertyPrice": null,
+          "mortgageRate": null,
+          "oldAdValoremStampDuty": null,
+          "newAdValoremStampDuty": null,
+          "buyerStampDuty": null,
+          "extraStampDuty": null,
+          "monthlyPayments": [{
+            "number": 0,
+            "monthlyPayment": 0,
+            "monthlyPaymentStr": null,
+            "interest": 0,
+            "interestStr": null,
+            "principle": 0,
+            "principleStr": null,
+            "principleBalance": 5600000,
+            "principleBalanceStr": "8000000*0.7=5600000.0"
+          }, {
+            "number": 1,
+            "monthlyPayment": 22126.770333792258,
+            "monthlyPaymentStr": "1-240期每月月供=22126.770333792258904000000",
+            "interest": 11667,
+            "interestStr": "5600000.0*0.025/12=11667",
+            "principle": 10460,
+            "principleStr": "22126.770333792258904000000-11667=10460",
+            "principleBalance": 5589540,
+            "principleBalanceStr": "5600000.0-10460=5589540"
+          }, {
+            "number": 360,
+            "monthlyPayment": 22663.77238815942,
+            "monthlyPaymentStr": "1-240期每月月供=22663.77238815941967590000",
+            "interest": 56,
+            "interestStr": "22572*0.03/12=56",
+            "principle": 22608,
+            "principleStr": "22663.77238815941967590000-56=22608",
+            "principleBalance": -36,
+            "principleBalanceStr": "22572-22608=-36"
+          }],
+          "total": {
+            "number": null,
+            "monthlyPayment": 8030077.566689272,
+            "monthlyPaymentStr": null,
+            "interest": 2430124,
+            "interestStr": null,
+            "principle": 5600036,
+            "principleStr": null,
+            "principleBalance": null,
+            "principleBalanceStr": null
+          },
+          "code": "1000",
+          "msg": null
+        }
+      };
+      var dataObj = data.monthlyPayments;
+      if (dataObj.code = 1000) {
+       function getHtml(obj) {
+          var gethtml = '<tr><td>' + obj.number + '</td><td>' + formatNumber(obj.monthlyPayment, 0, 1) + '</td><td>' + formatNumber(obj.principle, 0, 1) + '</td><td>' + formatNumber(obj.interest, 0, 1) + '</td><td>' + formatNumber(obj.principleBalance, 0, 1) + '</td></tr>'
+          return gethtml;
+        }
+        var elObj = dataObj.monthlyPayments;
+        var listCount = elObj.length - 1;
+        //每页条数
+        var items = 1;
+        //页码数
+        var pages = parseInt(listCount / items, 10) == listCount / items ? listCount / items : parseInt(listCount / items, 10) + 1;
+        
+        for (var i = 1; i <= pages; i++) {
+          $('#fixbtBox').prepend('<table class="contribution-tb tc" id="tb_' + i + '"> <thead><tr><th style="width:17%;">期數</th><th style="width:21%;">供款額</th><th style="width:19%;">本金</th><th style="width:19%;">利息</th><th style="width:19%;">餘下還款 </th></tr></thead><tbody></tbody></table>');
+          for (var j = (i - 1) * items + 1; j <=i * items; j++) {          
+            $('#tb_' + i).append(getHtml(elObj[j-1]));
+          }
+        }
+      } else {
+        showmsg(dataObj.msg);
+      }
+      /*},
+        error: function() {
+          showmsg('网络错误');
+        }
+      });*/
+    });
+  </script>
+
+</html>

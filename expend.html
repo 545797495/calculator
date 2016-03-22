@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>支出</title>
+    <link rel="stylesheet" href="css/calculator.css" />
+  </head>
+
+  <body>
+    <!--result list-->
+    <div class="expend-result result-conlist " id="resultList" style="display: none;">
+      <div class="result-item clearfix">
+        <p class="fl">樓價:</p>
+        <p class="fr"><span id="propertyPrice">3,200,000</span><em class="c-999">&nbsp;元</em></p>
+      </div>
+      <div class="result-item clearfix">
+        <p class="fl">成數:</p>
+        <p class="fr"><span id="mortgageRate">60</span><em>&nbsp;%</em></p>
+      </div>
+      <div class="result-item clearfix">
+        <p class="fl">首期:</p>
+        <p class="fr"><span id="initialCharges">480,000</span><em class="c-999">&nbsp;元</em></p>
+      </div>
+      <div class="result-item clearfix">
+        <p class="fl">貸款全額:</p>
+        <p class="fr"><span id="loan">18,966</span><em class="c-999">&nbsp;元</em></p>
+      </div>
+      <div class="result-item clearfix" id="perBox">
+        <p class="fl">期數:</p>
+        <p class="fr"><span id="yearPeriod">30</span><em>年</em><span>(<span id="period">360</span><em>期</em>)&nbsp;</span>
+        </p>
+      </div>
+      <div class="result-item clearfix">
+        <p class="fl">
+          <span id="xyPeriod">1-120</span>期利率:</p>
+        <p class="fr"><span id="xyInterestRate">2.5</span><em>&nbsp;%</em></p>
+      </div>
+      <div class="result-item clearfix">
+        <p class="fl">每月供款:</p>
+        <p class="fr"><span class="c-fda910" id="xyMonthlyPayment">18,966</span><em class="c-999">&nbsp;元</em></p>
+      </div>
+      <!--有填其余年限的 start-->
+      <div class="result-item clearfix" id="otherRateInfo">
+        <p class="fl"><span id="abPeriod">121-360</span>期利率:</p>
+        <p class="fr"><span id="abInterestRate">3</span><em class="c-999">&nbsp;%</em></p>
+      </div>
+      <div class="result-item clearfix" id="otherYearInfo">
+        <p class="fl">每月供款:</p>
+        <p class="fr"><span class="c-fda910" id="abMonthlyPayment">19,850</span><em class="c-999">&nbsp;元</em></p>
+      </div>
+      <!--有填其余年限的 end-->
+      <div class="result-item clearfix">
+        <p class="fl">全期總利息:</p>
+        <p class="fr"><span id="totalInterest">2,239,813</span><em class="c-999">&nbsp;元</em></p>
+      </div>
+      <div class="result-item clearfix">
+        <p class="fl">最低每月入息要求:</p>
+        <p class="fr"><span class="c-fda910" id="minimumMonthlyIncome">47,963</span><em class="c-999">&nbsp;元</em></p>
+      </div>
+      <div class="result-item clearfix" id="insureInfo">
+        <p class="fl">按揭保險費（一次付清）:</p>
+        <p class="fr"><span id="mortgagePremium">47,963</span><em class="c-999">&nbsp;元</em></p>
+      </div>
+    </div>
+    <!--result list-->
+    <!--税项结果-->
+    <div class="tax-resultbox" id="taxBox">
+      <p class="tax-title c-999">印花稅項</p>
+      <div class="result-item clearfix" id="oldTax">
+        <p class="fl">從價印花稅（舊）SD:</p>
+        <p class="fr"><span id="oldDuty">3,200,000</span><em class="c-999">&nbsp;元</em></p>
+      </div>
+      <div class="result-item clearfix" id="newTax">
+        <!-- 從價印花稅（新）AVD-->
+        <p class="fl">從價印花稅（新）AVD:</p>
+        <p class="fr"><span id="newDuty">3,200,000</span><em class="c-999">&nbsp;元</em></p>
+      </div>
+      <div class="result-item clearfix" id="buyerTax">
+        <p class="fl">買家印花稅BSD :</p>
+        <p class="fr"><span id="buyerDuty">0</span><em class="c-999">&nbsp;元</em></p>
+      </div>
+      <div class="result-item clearfix" id="otherTax">
+        <p class="fl">額外印花稅SSD :</p>
+        <p class="fr"><span id="extraDuty">0</span><em class="c-999">&nbsp;元</em></p>
+      </div>
+    </div>
+    <!---->
+    <!--税项选择 start-->
+    <div class="tax-optionbox" id="taxOption">
+      <p class="tax-title c-999">印花稅項</p>
+      <!--radio-->
+      <div class="frm-box">
+        <div class="frm-top radio-top clearfix checked">
+          <div class="radio-icon  js-radio">
+            <input type="radio" name="taxRadio" checked="checked" value="0" /><span></span>
+          </div>
+          <label>從價印花稅（舊）SD</label>
+          <p class="fr form-tip"><span>3,200,000</span><em class="c-999">&nbsp;元</em></p>
+        </div>
+        <p class="form-info">現適用於香港永久性居民購入住宅物業及在香港沒有擁 有其他任何住宅物業。
+        </p>
+      </div>
+      <div class="frm-box">
+        <div class="frm-top radio-top clearfix">
+          <div class="radio-icon js-radio">
+            <input type="radio" name="taxRadio" value="1" /><span></span>
+          </div>
+          <label> 從價印花稅（新）AVD</label>
+          <p class="fr form-tip"><span>0</span><em class="c-999">&nbsp;元</em></p>
+        </div>
+        <p class="form-info">適用於購買非住宅物業、或購入物業時已擁有另一住宅 物業、或非香港永久性居民購入物業。
+        </p>
+      </div>
+
+      <!--radio-->
+      <!--fuxuan-->
+      <div class="frm-box">
+        <div class="frm-top checkbox-top clearfix">
+          <div class="checkbox-icon js-checkbox">
+            <input type="checkbox" name="taxCheckbox" value="BSD" /><span></span>
+          </div>
+          <label>買家印花稅BSD </label>
+          <p class="fr form-tip"><span>0</span><em class="c-999">&nbsp;元</em></p>
+        </div>
+        <p class="form-info">所有非香港永久性居民或以公司名義購買住宅物業之人士。
+        </p>
+      </div>
+      <!--fuxuan-->
+      <!--有展开选项的box-->
+      <div class="frm-box">
+        <div class="frm-top expandbox-top clearfix">
+          <div class="expandbox-icon js-expandbox">
+            <input readonly="readonly" disabled="disabled" /><span></span>
+          </div>
+          <label>額外印花稅SSD</label>
+          <p class="fr form-tip"><span>0</span><em class="c-999">&nbsp;元</em></p>
+        </div>
+        <p class="form-info">若SSD由賣方負責，則無需選擇此項。
+        </p>
+        <!--展开div-->
+        <div class="expand-box frmradio-list">
+          <!---->
+          <div class="expand-item">
+            <p class="form-info" val="SECOND_GET_PROPERTY_TIEM">如住宅物業是2010年11月20日至2012年10月26日內取得，物業持有期符合以下其中一項</p>
+
+            <div class="frm-top radio-top  clearfix js-exradio">
+              <div class="radio-icon ">
+                <input type="radio" name="otherTax" value="SIX_MONTH_OR_LESS"><span></span>
+              </div>
+              <label>6個月或以內</label>
+            </div>
+            <div class="frm-top radio-top  clearfix js-exradio">
+              <div class="radio-icon">
+                <input type="radio" name="otherTax" value="SIX_TO_TWELVE_MONTH"><span></span>
+              </div>
+              <label>超過6個月至12個月或以內</label>
+            </div>
+
+            <div class="frm-top radio-top clearfix js-exradio">
+              <div class="radio-icon">
+                <input type="radio" name="otherTax" value="TWELVE_TO_TWENTYFOUR_MONTH"><span></span>
+              </div>
+              <label>超過12 個月至24個月或以內</label>
+            </div>
+            <div class="frm-top radio-top clearfix js-exradio">
+              <div class="radio-icon">
+                <input type="radio" name="otherTax" value="TWENTYFOUR_TO_THIRTYSIX_MONTH"><span></span>
+              </div>
+              <label> 超過24個月至36個月或以內</label>
+            </div>
+
+          </div>
+          <!---->
+          <div class="expand-item">
+            <p class="form-info" val="FIRST_GET_PROPERTY_TIEM">如住宅物業是在2012年10月27日或以後取得，物業持有期符合以下其中一項</p>
+            <div class="frm-top radio-top  clearfix js-exradio">
+              <div class="radio-icon ">
+                <input type="radio" name="otherTax" value="SIX_MONTH_OR_LESS"><span></span>
+              </div>
+              <label>6個月或以內</label>
+            </div>
+
+            <div class="frm-top radio-top  clearfix js-exradio">
+              <div class="radio-icon">
+                <input type="radio" name="otherTax" value="SIX_TO_TWELVE_MONTH"><span></span>
+              </div>
+              <label>超過6個月至12個月或以內</label>
+            </div>
+
+            <div class="frm-top radio-top clearfix js-exradio">
+              <div class="radio-icon">
+                <input type="radio" name="otherTax" value="TWELVE_TO_TWENTYFOUR_MONTH"><span></span>
+              </div>
+              <label>超過12 個月至24個月或以內</label>
+            </div>
+            <div class="frm-top radio-top clearfix js-exradio">
+              <div class="radio-icon">
+                <input type="radio" name="otherTax" value="TWENTYFOUR_TO_THIRTYSIX_MONTH"><span></span>
+              </div>
+              <label> 超過24個月至36個月或以內</label>
+            </div>
+
+          </div>
+          <!---->
+        </div>
+        <!--展开div-->
+      </div>
+      <!--有展开选项的box-->
+    </div>
+    <!--税项选择 end-->
+    <!--btn-->
+    <div class="result-btnbox tc" style="margin-bottom:0.7rem"><a class="m-btn" id="taxBtn">匯總</a></div>
+    <!--btn-->
+    <!--按钮组-->
+    <ul class="btn-list tc clearfix js-fixbtn" id="subLink">
+      <!--<li><a href="javascript:;" onclick="location.replace('expend.html')">支出一覽</a></li>
+      <li><a href="javascript:;" onclick="location.replace('contribution.html')">供款列表</a></li>
+      <li><a href="javascript:;" onclick="location.replace('mortgage_plan.html')">按揭計劃</a></li>-->
+    </ul>
+    <!--按钮组-->
+  </body>
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/calculator.js"></script>
+  <script type="text/javascript">
+    $(function() {
+       $('#subLink').append(ctrlLink());
+      infoList(urlInfo());
+   /* window.history.replaceState(null, null,window.localStorage.getItem('indexUrl'));*/
+    //window.history.replaceState(null, 'null','index.html'+window.localStorage.getItem('indexUrl'));
+      var userId = window.sessionStorage.getItem('userId');
+      var sessionId = window.sessionStorage.getItem('sessionId');
+      var version = window.sessionStorage.getItem('version');
+      /*读取计算器结果保存的session*/
+      var resultSession = window.sessionStorage.resultInfo;
+      var propertyPrice = null;
+      if (resultSession) {
+        var resultInfo = JSON.parse(resultSession);
+        $('#propertyPrice').text(formatNumber(resultInfo.propertyPrice, 0, 1));
+        propertyPrice = resultInfo.propertyPrice;
+        $('#mortgageRate').text(resultInfo.mortgageRate);
+        var infoObj = resultInfo.calculateResult;
+        $('#initialCharges').text(formatNumber(infoObj.initialCharges, 0, 1));
+        $('#loan').text(formatNumber(infoObj.loan, 0, 1));
+        $('#yearPeriod').text(infoObj.yearPeriod);
+        $('#period').text(infoObj.period);
+        $('#xyPeriod').html(infoObj.xPeriod + '-' + infoObj.yPeriod);
+        $('#xyInterestRate').text(formatNumber(infoObj.xyInterestRate, 2, 0));
+        $('#xyMonthlyPayment').text(formatNumber(infoObj.xyMonthlyPayment, 0, 1));
+        if (infoObj.aPeriod && infoObj.bPeriod && infoObj.abMonthlyPayment) {
+          $('#abPeriod').html(infoObj.aPeriod + '-' + infoObj.bPeriod);
+          $('#abInterestRate').text(formatNumber(infoObj.abInterestRate, 2, 0));
+          $('#abMonthlyPayment').text(formatNumber(infoObj.abMonthlyPayment, 0, 1));
+          $('#otherYearInfo').show();
+          $('#otherRateInfo').show();
+        } else {
+          $('#otherYearInfo').hide();
+          $('#otherRateInfo').hide();
+        }
+        $('#totalInterest').text(formatNumber(infoObj.totalInterest, 0, 1));
+        $('#minimumMonthlyIncome').text(formatNumber(infoObj.minimumMonthlyIncome, 0, 1));
+        if (infoObj.mortgagePremium) {
+          $('#mortgagePremium').text(formatNumber(infoObj.mortgagePremium, 0, 1));
+          $('#insureInfo').show();
+        } else {
+          $('#insureInfo').hide();
+        }
+      }
+      $('#resultList').show();
+      /*房价*/
+      var newoldDuty = null;
+      var buyerDuty = null;
+      var extraDuty = null;
+      var taxSendObj = {
+        "propertyPrice": propertyPrice,
+        "version": version,
+        "sessionId": sessionId
+      };
+
+      function checkRadio() {
+        var taxrObj = $('input[name=taxRadio]:checked');
+        var taxR = taxrObj.val();
+        var showEl = taxrObj.parent('.js-radio').siblings('.form-tip').children('span');
+        /*旧*/
+        if (taxR == "0") {
+          /*$.ajax({
+            type: 'POST',
+            url: api + '/calculateOldAdValoremStampDuty',
+            data: taxSendObj,
+            dataType: "json",
+            success: function(data) {*/
+              var data={"oldAdValoremStampDuty":{"initialCharges":null,"loan":null,"yearPeriod":null,"period":null,"xPeriod":null,"yPeriod":null,"xyInterestRate":null,"xyMonthlyPayment":null,"aPeriod":null,"bPeriod":null,"abInterestRate":null,"abMonthlyPayment":null,"totalInterest":null,"minimumMonthlyIncome":null,"mortgagePremium":null,"userId":null,"requestId":null,"propertyPrice":null,"mortgageRate":null,"oldAdValoremStampDuty":3750372.07500000000000000000,"newAdValoremStampDuty":null,"buyerStampDuty":null,"extraStampDuty":null,"monthlyPayments":[],"total":null,"code":"1000","msg":null}};
+              var dataObj = data.oldAdValoremStampDuty;
+              if (dataObj.code = '1000') {
+                newoldDuty = dataObj.oldAdValoremStampDuty;
+                showEl.text(formatNumber(newoldDuty, 0, 1));
+              } else {
+                /*错误*/
+                showmsg(dataObj.msg);
+              }
+             /* },
+            error: function() {
+              showmsg('网络错误');
+          }
+          });*/
+        } else {
+         /* $.ajax({
+            type: 'POST',
+            url: api + '/calculateNewAdValoremStampDuty',
+            data: taxSendObj,
+            dataType: "json",
+            success: function(data) {*/
+              var data={"newAdValoremStampDuty":{"initialCharges":null,"loan":null,"yearPeriod":null,"period":null,"xPeriod":null,"yPeriod":null,"xyInterestRate":null,"xyMonthlyPayment":null,"aPeriod":null,"bPeriod":null,"abInterestRate":null,"abMonthlyPayment":null,"totalInterest":null,"minimumMonthlyIncome":null,"mortgagePremium":null,"userId":null,"requestId":null,"propertyPrice":null,"mortgageRate":null,"oldAdValoremStampDuty":null,"newAdValoremStampDuty":7500744.15000000000000000000,"buyerStampDuty":null,"extraStampDuty":null,"monthlyPayments":[],"total":null,"code":"1000","msg":null}};
+              var dataObj = data.newAdValoremStampDuty;
+              if (dataObj.code = '1000') {
+                newoldDuty = dataObj.newAdValoremStampDuty;
+                showEl.text(formatNumber(newoldDuty, 0, 1));
+              } else {
+                /*错误*/
+                showmsg(dataObj.msg);
+              }
+           /* },
+            error: function() {
+              showmsg('网络错误');
+            }
+          });*/
+        }
+      }
+      /*一加载页面就要交互一次 默认选中一个单选*/
+      checkRadio();
+      /*新旧税接口传值读取*/
+      $('.js-radio').on('click', function() {
+        checkRadio();
+      });
+      /*买家印花税税接口传值读取*/
+      $('.js-checkbox').on('click', function() {
+        var taxBuyer = $('input[name=taxCheckbox]:checked').val();
+        var showEl = $(this).siblings('.form-tip').children('span');
+        if (taxBuyer == "BSD") {
+         /* $.ajax({
+            type: 'POST',
+            url: api + '/calculateBuyerStampDuty',
+            data: taxSendObj,
+            dataType: "json",
+            success: function(data) {*/
+             var data={"buyerStampDuty":{"initialCharges":null,"loan":null,"yearPeriod":null,"period":null,"xPeriod":null,"yPeriod":null,"xyInterestRate":null,"xyMonthlyPayment":null,"aPeriod":null,"bPeriod":null,"abInterestRate":null,"abMonthlyPayment":null,"totalInterest":null,"minimumMonthlyIncome":null,"mortgagePremium":null,"userId":null,"requestId":null,"propertyPrice":null,"mortgageRate":null,"oldAdValoremStampDuty":null,"newAdValoremStampDuty":null,"buyerStampDuty":15001488.30000000000000000000,"extraStampDuty":null,"monthlyPayments":[],"total":null,"code":"1000","msg":null}};
+              var dataObj = data.buyerStampDuty;
+              if (dataObj.code = '1000') {
+                buyerDuty = dataObj.buyerStampDuty;
+                showEl.text(formatNumber(buyerDuty, 0, 1));
+              } else {
+                /*错误*/
+                showmsg(dataObj.msg);
+              }
+           /* },
+            error: function() {
+              showmsg('网络错误');
+            }
+          });*/
+        }else{
+          buyerDuty=null;
+          showEl.text(0);
+        }
+      });
+      /*单选框*/
+      $('.js-exradio').on('click', function() {
+        var clName = 'checked';
+        if ($(this).hasClass(clName)) {
+          $(this).removeClass(clName);
+          $('.expandbox-top .form-tip').hide();
+          /* extraDuty=null;*/
+        } else {
+          $('.js-exradio').removeClass(clName);
+          $(this).addClass(clName);
+          var getPropertyTime = $('.js-exradio.checked').siblings('.form-info').attr('val');
+          var holdingPeriod = $('.js-exradio.checked').find('input').val();
+          var taxExtraObj = {
+            "propertyPrice": propertyPrice,
+            "holdingPeriod": holdingPeriod,
+            "getPropertyTime": getPropertyTime,
+            "version": version,
+            "sessionId": sessionId
+          };
+          /*后台ajax*/
+          /*$.ajax({
+            type: 'POST',
+            url: api + '/calculateExtraStampDuty',
+            data: taxExtraObj,
+            dataType: "json",
+            success: function(data) {*/
+             var data={"extraStampDuty":{"initialCharges":null,"loan":null,"yearPeriod":null,"period":null,"xPeriod":null,"yPeriod":null,"xyInterestRate":null,"xyMonthlyPayment":null,"aPeriod":null,"bPeriod":null,"abInterestRate":null,"abMonthlyPayment":null,"totalInterest":null,"minimumMonthlyIncome":null,"mortgagePremium":null,"userId":null,"requestId":null,"propertyPrice":null,"mortgageRate":null,"oldAdValoremStampDuty":null,"newAdValoremStampDuty":null,"buyerStampDuty":null,"extraStampDuty":5000496.10000000000000000000,"monthlyPayments":[],"total":null,"code":"1000","msg":null}};
+              var dataObj = data.extraStampDuty;
+              if (dataObj.code = '1000') {
+                extraDuty = dataObj.extraStampDuty;
+                $('.expandbox-top .form-tip').show().children('span').text(formatNumber(extraDuty, 0, 1));
+              } else {
+                showmsg(dataObj.msg);
+              }
+           /* },
+            error: function() {
+              showmsg('网络错误');
+            }
+          });*/
+        }
+      });
+      $('#taxBtn').on('click', function() {
+        /*进行提交等操作*/
+        /*单选*/
+        var taxR = $('input[name=taxRadio]:checked').val();
+        /* var taxBuyer = $('input[name=taxCheckbox]:checked').val();
+         var taxOther = $('.js-exradio.checked').find('input').val();*/
+        /*进行判断显示等操作*/
+        /*新舊選擇*/
+        if (taxR == '0') {
+          $('#oldDuty').text(formatNumber(newoldDuty, 0, 1));
+          $('#oldTax').show();
+          $('#newTax').hide();
+        } else {
+          $('#oldTax').hide();
+          $('#newDuty').text(formatNumber(newoldDuty, 0, 1));
+          $('#newTax').show();
+        }
+          if (buyerDuty) {
+          $('#buyerDuty').text(formatNumber(buyerDuty, 0, 1));
+          $('#buyerTax').show();
+        } else {
+          $('#buyerDuty').text(0);
+          $('#buyerTax').show();
+        }
+        if (extraDuty) {
+          $('#extraDuty').text(formatNumber(extraDuty, 0, 1));
+          $('#otherTax').show();
+        } else {
+          $('#extraDuty').text(0);
+          $('#otherTax').show();
+        }
+        $('#taxBox').show();
+        /*汇总完后動畫*/
+        var tops = $('#perBox').offset().top;        
+        $('body').animate({
+          scrollTop: tops
+        }, 800);
+      });
+    });
+  </script>
+
+</html>
