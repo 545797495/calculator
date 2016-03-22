@@ -1,0 +1,572 @@
+body,
+ul,
+li,
+form,
+input,
+i,
+em,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+div,
+a,
+input,
+ul {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/*默认375px宽;*/
+
+html {
+  font-size: 625%;
+}
+
+body {
+  font-family: "microsoft yahei";
+  color: #333;
+  font-size: 0.16rem;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+ul {
+  list-style: none;
+}
+
+em,
+i {
+  font-style: normal;
+}
+
+a,
+a:hover,
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #333;
+}
+
+
+/*浮动相关*/
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix:after,
+.clearfix:before {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.tc {
+  text-align: center;
+}
+
+.tl {
+  text-align: left;
+}
+
+.tr {
+  text-align: right;
+}
+
+.db {
+  display: block;
+}
+
+
+/*media*/
+
+@media only screen and (min-width: 310px) {
+  html {
+    font-size: 533%!important
+  }
+  @media screen and (min-width: 359px) and (max-width:374px) {
+    html {
+      font-size: 600%!important
+    }
+  }
+  @media screen and (min-width: 375px) and (max-width:413px) {
+    html {
+      font-size: 625%!important
+    }
+  }
+  @media screen and (min-width: 414px) {
+    html {
+      font-size: 690%!important
+    }
+  }
+  /*con css*/
+  .mtb2rem {
+    margin: 0.2rem 0;
+  }
+  .c-fda910 {
+    color: #fda910;
+  }
+  .c-999 {
+    color: #999;
+  }
+  .form-outbox {
+    padding: 0.12rem 0;
+    background-color: #f0efeb;
+  }
+  .form-inbox {
+    padding-left: 0.15rem;
+    background: #fff;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .from-item:first-child {
+    border-top: 0
+  }
+  .from-item {
+    border-top: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    line-height: 0.48rem;
+  }
+  .main-abl {
+    left: 0;
+    width: 0.8rem;
+    text-align: left;
+  }
+  .main-input {
+    border: none;
+    width: 100%;
+    height: 100%;
+    font-size: 0.16rem;
+    color: #999;
+    padding: 0 0.35rem 0 0.8rem;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .main-abr {
+    right: 0.15rem;
+    width: 0.2rem;
+    text-align: right;
+  }
+  .main-abl,
+  .main-abr {
+    position: absolute;
+    top: 0;
+  }
+  a.cal-toggle {
+    color: #fda910;
+    line-height: 0.3rem;
+    height: 0.3rem;
+    display: block;
+    padding-left: 0.15rem;
+    background-color: #f0efeb;
+  }
+  .m-icon {
+    display: inline-block;
+  }
+  .i-toggle {
+    width: 0.12rem;
+    height: 0.07rem;
+    background: url(../../../images/icon/calculator/i_down.png) no-repeat;
+    background-size: 0.12rem 0.07rem;
+    vertical-align: top;
+    margin: 0.11rem 0 0 0.03rem;
+  }
+  .expanded .i-toggle {
+    background: url(../../../images/icon/calculator/i_up.png) no-repeat;
+    background-size: 0.12rem 0.07rem;
+  }
+  .expand-box {
+    display: none;
+  }
+  .expanded + .expand-box {
+    display: block;
+  }
+  .i-jiao {
+    width: 0.11rem;
+    height: 0.09rem;
+    background: url(../../../images/icon/calculator/i_jiao.png) no-repeat;
+    background-size: 0.11rem 0.09rem;
+    top: 0.16rem;
+  }
+  .i-jin {
+    color: #33c3e2;
+    line-height: 0.4rem;
+    top: 0;
+  }
+  .result-btnbox {
+    padding: 0 0.15rem;
+    box-sizing: border-box;
+    margin: 0.3rem 0;
+  }
+  a.m-btn {
+    width: 100%;
+    height: 0.45rem;
+    line-height: 0.45rem;
+    background-color: #f9be00;
+    display: block;
+    border-radius: 0.04rem;
+    color: #fff;
+    font-size: 0.18rem;
+  }
+  .result-infobox {
+    display: none;
+    margin: 0.35rem 0 0.5rem 0;
+  }
+  .result-item {
+    line-height: 0.4rem;
+    height: 0.4rem;
+    font-size: 0.16rem;
+    padding: 0 0.15rem 0 0.32rem;
+    position: relative;
+  }
+  .expend-result .result-item {
+    padding-left: 0.15rem;
+  }
+  .result-item i {
+    position: absolute;
+    left: 0.15rem;
+  }
+  a.intro-link {
+    color: #33c3e2;
+    line-height: 0.4rem;
+    height: 0.4rem;
+    padding-left: 0.32rem;
+    font-size: 0.13rem;
+  }
+  .btn-list {
+    border-top: 1px solid #e5e5e5;
+    padding: 0.1rem 0.18rem;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    width: 100%;
+    z-index: 999;
+  }
+  .btn-list li {
+    width: 33.3%;
+    float: left;
+    box-sizing: border-box;
+    padding: 0 0.1rem;
+  }
+  .fixbt {
+    height: 0.65rem;
+  }
+  .btn-list li a {
+    width: 100%;
+    display: block;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    border: 1px solid #bbb;
+    border-radius: 0.04rem;
+    font-size: 0.15rem;
+  }
+  .btn-list li a:hover,
+  .btn-list li a:visited,
+  .btn-list li a:active {
+    background: #f0f0f0;
+  }
+  /*支出一览*/
+  .tax-resultbox {
+    display: none;
+  }
+  .tax-resultbox .result-item,
+  .tax-resultbox .tax-title {
+    padding-left: 0.15rem;
+    line-height: 0.4rem;
+  }
+  .tax-title {
+    font-size: 0.14rem;
+  }
+  .tax-optionbox {
+    padding: 0.2rem 0.15rem 0 0.15rem;
+  }
+  .frm-box {
+    margin-top: 0.15rem;
+  }
+  .checkbox-icon,
+  .radio-icon,
+  .expandbox-icon {
+    width: 0.25rem;
+    height: 0.25rem;
+    margin: 0.04rem 0.08rem 0 0;
+    position: relative;
+    border: 1px solid #e5e5e7;
+    /* background: #fff;*/
+    vertical-align: middle;
+    float: left;
+  }
+  .expandbox-icon {
+    border: 1px solid #b7b7b7;
+  }
+  .radio-icon {
+    border-radius: 50%;
+  }
+  .checkbox-icon,
+  .expandbox-icon {
+    border-radius: 0.04rem;
+  }
+  .frm-top {
+    line-height: 0.35rem;
+  }
+  .frm-top label {
+    display: block;
+    float: left;
+    font-size: 0.16rem;
+  }
+  .frm-top input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    /*使input按钮在span的上一层，不加点击区域会出现不灵敏*/
+  }
+  .checkbox-icon span,
+  .radio-icon span,
+  .expandbox-icon span {
+    position: absolute;
+    z-index: 1;
+    display: none;
+  }
+  .expandbox-icon span {
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 0.06rem solid transparent;
+    border-right: 0.06rem solid transparent;
+    border-bottom: 0.08rem solid #b7b7b7;
+    border-top: 0;
+    top: 50%;
+    left: 50%;
+    margin: -0.04rem 0 0 -0.06rem;
+  }
+  .expanded .expandbox-icon span {
+    border-top: 0.08rem solid #b7b7b7;
+    border-bottom: 0;
+  }
+  .checkbox-icon span {
+    width: 0.24rem;
+    height: 0.24rem;
+    color: #fff;
+    background: url(../../../images/icon/calculator/i_ok.png) no-repeat;
+    background-size: 0.24rem 0.24rem;
+    top: 50%;
+    left: 50%;
+    margin: -0.12rem 0 0 -0.12rem;
+  }
+  .radio-icon span {
+    width: 0.14rem;
+    height: 0.14rem;
+    border-radius: 50%;
+    background: #fda910;
+    top: 50%;
+    left: 50%;
+    margin: -0.07rem 0 0 -0.07rem;
+  }
+  .form-tip {
+    display: none;
+  }
+  .checked .radio-icon {
+    border: 1px solid #fda910;
+  }
+  .checked .checkbox-icon {
+    border: 1px solid #fda910;
+    background: #fda910;
+  }
+  .checked .radio-icon span,
+  .checked .checkbox-icon span,
+  .checked .form-tip,
+  .expanded .expandbox-icon span {
+    display: block;
+  }
+  .form-info {
+    color: #999;
+    margin-left: 0.33rem;
+    font-size: 0.13rem;
+  }
+  /*expand div*/
+  .frmradio-list {
+    background: #f5f5f5;
+    padding: 0.1rem;
+    margin: 0.1rem 0 0 0.33rem;
+  }
+  .expand-item .form-info {
+    margin: 0.1rem 0;
+  }
+  .expand-item:first-child .form-info {
+    margin-top: 0;
+  }
+  .expand-item .frm-box {
+    margin: 0.03rem 0;
+  }
+  .expand-item .frm-top label {
+    font-size: 0.14rem;
+  }
+  /*expand div*/
+  /*支出一览 END*/
+  /*供款表*/
+  .contribution-tb {
+    border-collapse: collapse;
+    font-size: 0.13rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .contribution-tb tr th {
+    background-color: #f0f0f0;
+    color: #666;
+    font-weight: normal;
+    font-size: 0.14rem;
+  }
+  .contribution-tb tr {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+  }
+  .contribution-tb td,
+  .contribution-tb th {
+    padding: 0.1rem 0;
+  }
+  .contribution-tb td:first-child,
+  .contribution-tb th:first-child {
+    padding-left: 0.15rem;
+  }
+  .contribution-tb td:last-child,
+  .contribution-tb th:last-child {
+    padding-right: 0.15rem;
+  }
+  /*供款表 END*/
+  /*按揭计划*/
+  .mplan-box {
+    padding: 0 0.15rem;
+  }
+  .plan-head {
+    color: #ff6600;
+    font-size: 0.16rem;
+    padding-left: 0.15rem;
+    line-height: 0.3rem;
+    position: relative;
+  }
+  .plan-head::before {
+    content: '';
+    position: absolute;
+    top: 0.13rem;
+    width: 0.04rem;
+    height: 0.04rem;
+    border-radius: 50%;
+    background: #000;
+    left: 0.06rem;
+    margin-left: 0rem;
+  }
+  .plan-tip {
+    font-size: 0.13rem;
+    color: #333;
+    line-height: 0.2rem;
+    padding: 0.15rem 0.15rem 0 0.15rem;
+  }
+  .mplan-tb {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #eee;
+    font-size: 0.13rem;
+    color: #333;
+    line-height: 0.2rem;
+  }
+  .mplan-tb tr {
+    border: 1px solid #eee;
+    text-align: left;
+  }
+  .mplan-tb td {
+    background: #fff;
+    padding: 0.09rem;
+  }
+  .mplan-tip {
+    font-size: 0.11rem;
+    color: #999;
+  }
+  .mplan-tb td:first-child {
+    width: 24.6%;
+    background: #fff9f1;
+    border-right: 1px solid #eee;
+    font-weight: bold;
+  }
+  /*按揭计划*/
+  /*按揭说明*/
+  .instruct-con {
+    font-size: 0.13rem;
+    padding: 0.15rem;
+    line-height: 0.22rem;
+  }
+  .instruct-list li {
+    position: relative;
+    padding-left: 0.1rem;
+  }
+  .instruct-list li i {
+    position: absolute;
+    top: 0.09rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #333;
+    left: 0;
+  }
+  .instruct-con .i-jiao {
+    margin-top: -0.1rem;
+  }
+  .instruct-tip {
+    text-indent: 0.12rem;
+  }
+  .instruct-tip a {
+    color: #0054ff;
+    font-size: 0.12rem;
+  }
+  /*按揭说明END*/
+  .msg-box {
+    position: fixed;
+    top: 30%;
+    margin-top: -0.25rem;
+    left: 0.1rem;
+    right: 0.1rem;
+    opacity: 0;
+    z-index: 1000;
+  }
+  .msg-con {
+    background: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border-radius: 0.05rem;
+    min-height: 18px;
+    font-size: 0.16rem;
+    color: #FFFFFF;
+    line-height: 0.16rem;
+    height: 0.5rem;
+    width: 80%;
+    line-height: 0.5rem;
+    margin: 0 auto;
+    padding: 0 0.15rem;
+  }
